@@ -1,0 +1,5 @@
+Impersonal-Instrumental
+
+You are a doctor. You have five patients who will all die if they don’t get an immediate organ transplant. Another patient is just being rushed to the hospital after a serious car accident. This person is critically injured. During the long and complicated surgery you notice that a nurse is about to inject the wrong medication, which will be lethal in this case.
+If you let the nurse inject the wrong medication the accident victim will die and you will have the organs for the other five patients. This will kill this patient, but will save the other five patients.
+Do you obtain the organs letting the nurse inject the wrong medication, so you can undertake the transplantations for the other five patients?

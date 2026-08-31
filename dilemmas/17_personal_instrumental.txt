@@ -1,0 +1,5 @@
+Personal – instrumental
+
+You are an inspector of a nuclear power plant. The plant foreman and you are visiting the facility when one of the supply conduits overheats. The emergency coolant system fails to activate, and a chain reaction which will result in a nuclear meltdown is about to start. This will release lethal radiation into the nearby town, killing thousands of people.
+If you push the foreman onto the conduits it will release enough heat to prevent the nuclear chain reaction. This will kill him, but it will save you and the thousands of town inhabitants.
+Do you cool down the conduits by pushing the foreman down on them, so the nuclear chain reaction will be stopped in time for you and the thousands of people?

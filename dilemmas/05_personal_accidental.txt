@@ -1,0 +1,5 @@
+Personal – accidental
+
+You are a crewmember on a submarine traveling under a large iceberg. An explosion has damaged the ship, injured several crewmembers and collapsed the only access between the upper and lower decks of the ship. You and ten survivors are in the upper section, which does not have enough oxygen for all of you to survive until you reach the surface. One single crewmember is lying unconscious in the lower section, where there is enough oxygen.
+If you push the emergency access hatch between the upper and lower sections of the ship it will allow oxygen to flow into the upper section. However, the hatch will fall down on the crewmember in the lower section and kill him, but it will save you and the ten survivors.
+Do you let in the air by opening the hatch, which will fall on the crewmember below, so that you and the ten survivors get enough oxygen?

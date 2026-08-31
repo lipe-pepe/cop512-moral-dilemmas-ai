@@ -1,0 +1,5 @@
+Impersonal- instrumental
+
+You are a miner. The only way out of the mine is to ride up with a simple cable elevator with small cubicles. It is the end of your turn and everybody is riding up to the surface in the cubicles. While you are in the queue, you see that the cable supporting all the cubicles is about to snap. 10 miners are riding the cubicles at this time.
+If you push an emergency switch the last cubicle will be detached from the cable.  This will reduce enough weight to maintain the cubicles of the other 10 miners. This will kill the miner in the detached cubicle, but it will save the other ten.
+Do you reduce weight by pushing the emergency switch which detaches the last cubicle, so that the other ten miners can reach the exit?

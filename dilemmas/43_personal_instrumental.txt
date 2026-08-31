@@ -1,0 +1,5 @@
+Personal – instrumental
+
+You are a miner. The only way out of the mine is to ride up with a simple cable elevator with small cubicles. It is the end of your shift and everybody is riding up to the surface in the cubicles. While you are in the queue, you see that the cable supporting all the cubicles is about to snap. 10 miners are riding in the cubicles at this time.
+If you knock over the last cubicle, the miner inside will fall down. In this way, you will reduce the load enough for the cable to resist breaking, and bring the other 10 miners to the exit. This will kill the miner in the cubicle you knock over, but you will save the other 10.
+Do you reduce weight by knocking over the cubicle with only one miner, so that the other ten miners will reach the exit?

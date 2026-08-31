@@ -1,0 +1,5 @@
+Personal- accidental
+
+You are part of a shipyard dock team that attaches crane cables to containers to unload the cargo ships. You and the others have just attached cables to a container and are now climbing on top of it to make sure it is unloaded properly. Suddenly the red warning light flashes indicating that the crane cable is about to fail. You see that the reason for this is a fight between two crewmembers. The container is swinging dangerously over five other crewmembers on the deck.
+If you push the two fighting crewmembers to separate them, you will avoid having the container fall down. However, one of the crewmembers is not wearing his safety harness and will fall off the container. This will kill him, but it will save the five crewmembers on the deck.
+Do you stop the swinging of the container by pushing your colleagues, which will cause the one without safety harness to fall down, so the container won’t collapse onto the five crewmembers on the deck?
