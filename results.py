@@ -3,8 +3,7 @@ from datetime import datetime, timezone
 from config import (
     EXPERIMENT_ID,
     MODEL_NAME,
-    RESULTS_DIRECTORY,
-    RESULTS_FILE,
+    RESULTS_PATH,
     TEMPERATURE,
 )
 
@@ -36,19 +35,5 @@ def create_result_record(
 
 
 def save_result(record):
-    RESULTS_DIRECTORY.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    with RESULTS_FILE.open(
-        "a",
-        encoding="utf-8",
-    ) as results_file:
-        results_file.write(
-            json.dumps(
-                record,
-                ensure_ascii=False,
-            )
-            + "\n"
-        )
+    with RESULTS_PATH.open("a", encoding="utf-8") as file:
+        file.write(json.dumps(record, ensure_ascii=False) + "\n")

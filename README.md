@@ -1,252 +1,137 @@
 # IA e Dilemas Morais
 
-Projeto em Python que utiliza um modelo de linguagem executado localmente para tomar decisões diante de dilemas morais.
+Projeto em Python que utiliza um modelo de linguagem executado localmente para responder a dilemas morais e registrar os resultados para análise.
 
-Este projeto foi desenvolvido para a disciplina **COP512 — Comunicação e Tecnologias Cognitivas**, da **Universidade Federal do Rio de Janeiro (UFRJ)**.
+Desenvolvido para a disciplina **COP512 — Comunicação e Tecnologias Cognitivas**, da **Universidade Federal do Rio de Janeiro (UFRJ)**.
 
-## Sobre o projeto
+Os dilemas são baseados no estudo *Moral judgment reloaded: A moral dilemma validation study*, de Christensen et al. (2014). O modelo deve escolher entre `YES` e `NO` e fornecer uma justificativa curta em inglês.
 
-O programa apresenta um dilema moral a um modelo de inteligência artificial e solicita que ele decida se realizaria ou não a ação proposta no cenário.
+O modelo é executado localmente pelo [Ollama](https://ollama.com/), sem necessidade de API externa ou chave de API.
 
-Os dilemas utilizados são baseados no estudo:
-
-> Christensen, J. F., Flexas, A., Calabrese, M., Gut, N. K., & Gomila, A. (2014). *Moral judgment reloaded: A moral dilemma validation study*. Frontiers in Psychology, 5, 607.
-
-O estudo apresenta um conjunto revisado e validado de dilemas morais, desenvolvido para investigar como diferentes características de uma situação podem influenciar o julgamento moral.
-
-Neste projeto, o dilema selecionado é lido de um arquivo de texto e enviado para um modelo de linguagem. O modelo deve:
-
-* escolher exatamente entre `YES` e `NO`;
-* responder em inglês;
-* fornecer uma justificativa curta;
-* não criar uma solução alternativa fora das opções do dilema.
-
-O modelo é executado localmente por meio do [Ollama](https://ollama.com/). Portanto, o projeto não depende de uma API externa nem exige uma chave de API.
+As hipóteses, o desenho experimental, os resultados preliminares e as limitações estão descritos em [`EXPERIMENTO.md`](EXPERIMENTO.md).
 
 ## Estrutura do projeto
 
 ```text
 moral-ai-dilemmas/
 ├── dilemmas/
-│   ├── dilemma_01.txt
-│   ├── dilemma_02.txt
-│   └── ...
-├── main.py
-├── .gitignore
+├── results/
+├── analyze_results.py
+├── config.py
+├── dataset.py
+├── dilemmas_metadata.csv
+├── EXPERIMENTO.md
+├── model.py
+├── prompts.py
+├── results.py
+├── run_experiment.py
+├── validate_dataset.py
 └── README.md
 ```
 
-Cada arquivo dentro da pasta `dilemmas/` contém um dilema moral completo, incluindo sua pergunta final.
-
 ## Requisitos
 
-Antes de executar o projeto, é necessário ter:
-
-* Python 3 instalado;
-* `pip` e `venv` instalados;
-* Ollama instalado;
-* modelo `llama3.2:3b` baixado.
+- Python 3;
+- `pip` e `venv`;
+- Ollama;
+- modelo `llama3.2:3b`.
 
 ## Instalação
 
-### 1. Clonar o repositório
+Clone o repositório:
 
 ```bash
-git clone git@github.com:lipe-pepe/cop512-moral-dilemmas-ai.git
+git clone git@github.com:lipe-pepe/cop512-moral-dilemmas-ai.git moral-ai-dilemmas
 cd moral-ai-dilemmas
 ```
-### 2. Instalar os recursos necessários do Python
 
-No Ubuntu ou WSL:
+No Ubuntu ou WSL, instale o suporte ao ambiente virtual:
 
 ```bash
 sudo apt update
 sudo apt install python3-pip python3-venv
 ```
 
-### 3. Criar um ambiente virtual
-
-Dentro da pasta do projeto, execute:
+Crie e ative o ambiente virtual:
 
 ```bash
 python3 -m venv .venv
-```
-
-Ative o ambiente virtual:
-
-```bash
 source .venv/bin/activate
 ```
 
-Depois da ativação, o terminal deverá exibir `(.venv)` antes do comando.
-
-### 4. Instalar as dependências do projeto
-
-Com o ambiente virtual ativado, execute:
+Instale a dependência Python:
 
 ```bash
 python -m pip install ollama
 ```
 
-## Instalação do Ollama
+## Ollama
 
-No Ubuntu ou WSL, instale o Ollama usando:
+Instale o Ollama no Ubuntu ou WSL:
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-Confirme se a instalação foi concluída:
-
-```bash
-ollama --version
-```
-
-## Inicialização do Ollama
-
-O servidor do Ollama precisa estar em execução antes de iniciar o programa em Python.
-
-### Ubuntu com systemd
-
-Inicie o serviço:
-
-```bash
-sudo systemctl start ollama
-```
-
-Verifique o status:
-
-```bash
-systemctl status ollama
-```
-
-Se o status mostrar `active (running)`, o Ollama está funcionando.
-
-### WSL ou sistemas sem systemd
-
-Inicie o servidor manualmente:
-
-```bash
-ollama serve
-```
-
-Mantenha esse terminal aberto enquanto utiliza o projeto.
-
-Abra outro terminal, entre novamente na pasta do projeto e ative o ambiente virtual:
-
-```bash
-cd moral-ai-dilemmas
-source .venv/bin/activate
-```
-
-## Download do modelo local
-
-Baixe o modelo utilizado pelo projeto:
+Baixe o modelo:
 
 ```bash
 ollama pull llama3.2:3b
 ```
 
-Confirme se o modelo está disponível:
-
-```bash
-ollama list
-```
-
-Também é possível testá-lo diretamente:
-
-```bash
-ollama run llama3.2:3b
-```
-
-Para encerrar a conversa direta com o modelo, utilize:
-
-```text
-/bye
-```
-
-## Seleção do dilema
-
-O dilema é selecionado diretamente no arquivo `main.py`.
-
-Encontre a variável:
-
-```python
-DILEMMA_FILE = "dilemma_01.txt"
-```
-
-Para testar outro dilema, altere seu valor para o nome de outro arquivo presente na pasta `dilemmas/`:
-
-```python
-DILEMMA_FILE = "dilemma_02.txt"
-```
-
-O nome informado precisa corresponder exatamente ao nome de um arquivo existente.
-
-## Execução do projeto
-
-Antes da execução, verifique se:
-
-1. o Ollama está em funcionamento;
-2. o modelo `llama3.2:3b` foi baixado;
-3. o ambiente virtual do Python está ativado;
-4. o arquivo do dilema selecionado existe.
-
-Execute o programa:
-
-```bash
-python main.py
-```
-
-O programa irá:
-
-1. ler o dilema selecionado;
-2. montar as instruções para o modelo;
-3. enviar o dilema ao modelo local;
-4. exibir a decisão e a justificativa geradas.
-
-A saída deverá seguir este formato:
-
-```text
-Decision: YES
-Justification: A short explanation of the model's decision.
-```
-
-ou:
-
-```text
-Decision: NO
-Justification: A short explanation of the model's decision.
-```
-
-Embora o README esteja em português, as respostas do modelo são apresentadas em inglês.
-
-## Executando novamente
-
-Ao abrir um novo terminal, ative novamente o ambiente virtual:
-
-```bash
-source .venv/bin/activate
-```
-
-Se o Ollama não estiver sendo executado automaticamente, abra outro terminal e inicie o servidor:
+Em sistemas sem `systemd`, inicie o servidor manualmente em outro terminal:
 
 ```bash
 ollama serve
 ```
 
-Depois, execute o projeto:
+Mantenha esse terminal aberto durante a execução. Em outro terminal, entre na pasta do projeto e ative novamente o ambiente virtual.
 
-```bash
-python main.py
+## Configuração
+
+Os principais parâmetros ficam em `config.py`:
+
+```python
+MODEL_NAME = "llama3.2:3b"
+NUMBER_OF_DILEMMAS = None
+REPETITIONS = 10
+TEMPERATURE = 0.7
 ```
 
-## Considerações importantes
+`NUMBER_OF_DILEMMAS = None` utiliza todos os dilemas disponíveis.
 
-O programa não identifica uma resposta moral objetivamente correta. Sua saída representa uma decisão gerada por um modelo de linguagem de acordo com seu treinamento e com as instruções fornecidas no prompt.
+## Execução
 
-Modelos, prompts ou execuções diferentes podem produzir decisões diferentes. Portanto, os resultados devem ser tratados como material para o estudo de inteligência artificial e julgamento moral, e não como orientações éticas definitivas.
+Valide os arquivos e metadados:
+
+```bash
+python validate_dataset.py
+```
+
+Execute o experimento:
+
+```bash
+python run_experiment.py
+```
+
+Cada execução cria um arquivo `.jsonl` dentro de `results/`. Cada linha representa uma resposta do modelo a um dilema.
+
+## Análise
+
+Liste os arquivos de resultado:
+
+```bash
+ls results
+```
+
+Analise a execução desejada:
+
+```bash
+python analyze_results.py results/NOME_DO_ARQUIVO.jsonl
+```
+
+O script compara as taxas de respostas utilitaristas entre dilemas pessoais e impessoais. Consulte [`EXPERIMENTO.md`](EXPERIMENTO.md) para entender as hipóteses e a interpretação dos resultados.
 
 ## Referência
 
-Christensen, J. F., Flexas, A., Calabrese, M., Gut, N. K., & Gomila, A. (2014). Moral judgment reloaded: A moral dilemma validation study. *Frontiers in Psychology, 5*, Article 607. https://doi.org/10.3389/fpsyg.2014.00607
+Christensen, J. F., Flexas, A., Calabrese, M., Gut, N. K., & Gomila, A. (2014). Moral judgment reloaded: A moral dilemma validation study. *Frontiers in Psychology, 5*, Article 607. <https://doi.org/10.3389/fpsyg.2014.00607>
